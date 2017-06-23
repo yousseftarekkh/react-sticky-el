@@ -170,7 +170,6 @@ export default class Sticky extends Component {
       boundaryBottom: boundaryRect.bottom,
       top: scrollRect.top,
       bottom: scrollRect.bottom,
-      // width: holderRect.width,
       height: wrapperRect.height
     });
   }
@@ -204,8 +203,6 @@ export default class Sticky extends Component {
     } else {
       style =  this.buildBottomStyles();
     }
-    // style.width = this.state.width;
-
     return style;
   }
 
@@ -268,7 +265,7 @@ function getRect(el) {
   }
 
   if (el === window || el === document) {
-    return {top: 0, left: 0, bottom: window.innerHeight, height: window.innerHeight, right: window.innerWidth};
+    return {top: 0, left: 0, bottom: window.innerHeight, height: window.innerHeight, width: window.innerWidth, right: window.innerWidth};
   }
 
   return {top: 0, left: 0, right: 0, bottom: 0, width: 0, height: 0};
