@@ -170,7 +170,7 @@ export default class Sticky extends Component {
       boundaryBottom: boundaryRect.bottom,
       top: scrollRect.top,
       bottom: scrollRect.bottom,
-      width: holderRect.width,
+      // width: holderRect.width,
       height: wrapperRect.height
     });
   }
@@ -204,7 +204,7 @@ export default class Sticky extends Component {
     } else {
       style =  this.buildBottomStyles();
     }
-    style.width = this.state.width;
+    // style.width = this.state.width;
 
     return style;
   }
