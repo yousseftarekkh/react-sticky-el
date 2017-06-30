@@ -49,7 +49,7 @@ export default class Sticky extends Component {
   static defaultProps = {
     className: '',
     style: {},
-    mode: 'top',
+    mode: 'both',
     holderCmp: 'div',
     holderProps: {},
     wrapperCmp: 'div',
@@ -173,15 +173,37 @@ export default class Sticky extends Component {
       height: wrapperRect.height
     });
   }
+  buildBothStyles() {
+    const { bottomOffset, hideOnBoundaryHit } = this.props;
+    const { top, bottom, height, boundaryBottom, boundaryTop } = this.state;
+    if (bottom - height - bottomOffset > boundaryTop) {
+      console.log("eihdah");
+      console.log("bottom - height - bottomOffset > boundaryTop");
+      console.log(bottom +" - "+ height +" - "+ bottomOffset + " > " + boundaryTop);
+      console.log("top + height + bottomOffset < boundaryBottom");
+      console.log(top+" - "+ height +" - "+ bottomOffset + " < " + boundaryBottom);
+      return { top: bottom - height, position: 'fixed' };
+      }
+    else{
+      console.log("dakhal hena");
+      if (top + height + bottomOffset < boundaryBottom) {
+         return { top, position: 'fixed' };
+      }
+      else {
 
+        return { bottom: bottomOffset, top: bottomOffset, position: 'absolute' };
+      }
+    }
+  }
   buildTopStyles() {
     const { bottomOffset, hideOnBoundaryHit } = this.props;
     const { top, height, boundaryBottom } = this.state;
-
+          console.log("top");
     if (hideOnBoundaryHit || (top + height + bottomOffset < boundaryBottom)) {
+            console.log(top);
       return { top, position: 'fixed' };
     }
-
+    console.log(bottomOffset);
     return { bottom: bottomOffset, position: 'absolute' };
   }
 
@@ -200,8 +222,13 @@ export default class Sticky extends Component {
     let style;
     if (this.props.mode === 'top') {
       style = this.buildTopStyles();
-    } else {
+    }
+    else if (this.props.mode === 'bottom'){
+      console.log("bottom");
       style =  this.buildBottomStyles();
+    }
+    else if(this.props.mode === 'both') {
+      style = this.buildBothStyles();
     }
     return style;
   }
