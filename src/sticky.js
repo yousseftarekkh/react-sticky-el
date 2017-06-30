@@ -31,7 +31,7 @@ const isEqual = (obj1, obj2) => {
 
 export default class Sticky extends Component {
   static propTypes = {
-    mode: PropTypes.oneOf(['top', 'bottom']),
+    mode: PropTypes.oneOf(['top', 'bottom', 'both']),
     stickyStyle: PropTypes.object,
     stickyClassName: PropTypes.string,
     hideOnBoundaryHit: PropTypes.bool,
